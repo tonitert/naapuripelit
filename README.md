@@ -1,5 +1,12 @@
 # Pihapelit
 
+## Development
+
+Some HTTP server is handy for developing the project. For example the python http server:
+```bash
+python3 -m http.server 8000
+```
+After that open localhost:8000 in the browser
 
 
 ## Getting started
