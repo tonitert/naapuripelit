@@ -23,6 +23,7 @@ const closeAccountBtn = document.getElementsByClassName("close-account-btn")[0]
 
 closeAccountBtn.onclick = () => {
     clearState();
+    alert("Tilisi on nyt suljettu.")
     location.reload();
 }
 
