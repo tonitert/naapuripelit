@@ -51,6 +51,27 @@ for (let gameReq of gameReqs) {
     addRequestRow(gameReq);
 }
 
+function addGameRow(game) {
+    const newRow = document.createElement("tr");
+    const dateCell = document.createElement("td");
+    dateCell.appendChild(document.createTextNode(game.date));
+    newRow.appendChild(dateCell);
+    const timeCell = document.createElement("td");
+    timeCell.appendChild(document.createTextNode(game.startTime + " - " + game.endTime));
+    newRow.appendChild(timeCell);
+    const gameCell = document.createElement("td");
+    gameCell.appendChild(document.createTextNode(game.game));
+    newRow.appendChild(gameCell);
+    const locationCell = document.createElement("td");
+    locationCell.appendChild(document.createTextNode(game.location));
+    newRow.appendChild(locationCell);
+    document.getElementById("gameList").appendChild(newRow);
+}
+
+for (let game of games) {
+    addGameRow(game);
+}
+
 document.getElementById("addButton").onclick = () => {
     const date = document.getElementById("dateInput").value;
     const startTime = document.getElementById("startTimeInput").value;
@@ -65,18 +86,36 @@ document.getElementById("addButton").onclick = () => {
     addRequestRow(gameRequest);
 };
 
-document.getElementById("gamesTab").onclick = () => {
+var randomGameReq = null;
+
+function initSearch() {
+    const requestedGameCard = document.getElementById("requestedGameCard");
     if (gameReqs.length > 0) {
-        const i = Math.floor(Math.random() * gameReqs.length);
-        const randomDuration = gameReqs[i].duration + Math.floor(Math.random() * 61);
-        document.getElementById("foundDate").innerText = gameReqs[i].date;
-        //document.getElementById("foundTime").innerText = gameTimes[i].startTime + " - " + gameTimes[i].endTime;
-        //document.getElementById("foundDuration").innerText = Math.floor(randomDuration / 60) + " tuntia " + (randomDuration % 60) + " minuuttia"
-        document.getElementById("foundGame").innerText = gameReqs[i].game;
-    };
-};
+        randomGameReq = gameReqs[Math.floor(Math.random() * gameReqs.length)]
+        document.getElementById("foundDateTime").innerText = randomGameReq.date + " klo " + randomGameReq.startTime + " - " + randomGameReq.endTime;
+        document.getElementById("foundGame").innerText = randomGameReq.game;
+        document.getElementById("requestedGameCard").hidden = false;
+    } else {
+        requestedGameCard.hidden = true;
+    }
+}
+
+initSearch();
+
+document.getElementById("gamesTab").onclick = initSearch;
+
+async function invite(game) {
+    await new Promise(r => setTimeout(r, 10000));
+    games.push(game);
+    setState({...getState(), games});
+    addGameRow(game);
+    alert("Matti Meikäläinen hyväksyi kutsusi!");
+}
 
 document.getElementById("inviteButton").onclick = async () => {
-    await new Promise(r => setTimeout(r, 10000));
-    alert("Matti Meikäläinen hyväksyi kutsusi!");
+    await invite(new Game(randomGameReq.date, randomGameReq.startTime, randomGameReq.endTime, randomGameReq.game, "Otahalli"));
+};
+
+document.getElementById("unreqInviteButton").onclick = async () => {
+    await invite(new Game("2024-11-21", "16:00", "17:30", "Jalkapallo", "Otahalli"));
 };
