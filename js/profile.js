@@ -14,6 +14,7 @@ function setElementContent(className, content) {
 const state = getState();
 
 setElementContent("profile-title", `Profiilisi, ${state.username}`)
+setElementContent("username-fill", state.username)
 
 /**
  * @type {HTMLButtonElement}
@@ -40,11 +41,3 @@ profileForm.addEventListener("submit", (e) => {
         }
     )
 })
-
-/**
- * @type {HTMLButtonElement}
- */
-const backBtn = document.getElementsByClassName("back-btn")[0]
-backBtn.onclick = () => {
-    history.back();
-}
