@@ -48,8 +48,8 @@ document.getElementById("gamesTab").onclick = () => {
         const i = Math.floor(Math.random() * gameTimes.length);
         const randomDuration = gameTimes[i].duration + Math.floor(Math.random() * 61);
         document.getElementById("foundDate").innerText = gameTimes[i].date;
-        document.getElementById("foundTime").innerText = gameTimes[i].startTime + " - " + gameTimes[i].endTime;
-        document.getElementById("foundDuration").innerText = Math.floor(randomDuration / 60) + " tuntia " + (randomDuration % 60) + " minuuttia"
+        //document.getElementById("foundTime").innerText = gameTimes[i].startTime + " - " + gameTimes[i].endTime;
+        //document.getElementById("foundDuration").innerText = Math.floor(randomDuration / 60) + " tuntia " + (randomDuration % 60) + " minuuttia"
         document.getElementById("foundGame").innerText = gameTimes[i].game;
     };
 };

@@ -35,30 +35,25 @@
             </ul>
             <div class="tab-content container mt-3">
                 <div class="tab-pane fade show active" id="gamesTabPane" role="tabpanel" aria-labelledby="gamesTab" tabindex="0">
-                    <p><b>Löytyi 1 peliaika!</b></p>
-                    <button type="button" class="btn btn-link" id="inviteButton">Ilmoittaudu</button>
-                    <table class="table">
-                        <tr>
-                            <th scope="row">Sijainti</th>
-                            <td>Otaniemen urheiluhalli</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Päivä</th>
-                            <td id="foundDate"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Aika</th>
-                            <td id="foundTime"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Minimikesto</th>
-                            <td id="foundDuration"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Mieluinen peli</th>
-                            <td id="foundGame"></td>
-                        </tr>
-                    </table>
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Otahalli.JPG" class="img-fluid rounded-start" width="300" height="300" alt="Otahalli">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <span id="foundGame"></span> @ Otahalli
+                                    </h5>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary" id="foundDate"></h6>
+                                    <p class="card-text">
+                                        Ilmoittautuneita: 5/20 <span class="badge text-bg-success">Sopii toiveeseesi</span>
+                                    </p>
+                                    <button type="button" class="btn btn-primary" id="inviteButton">Ilmoittaudu</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="requestsTabPane" role="tabpanel" aria-labelledby="requestsTab" tabindex="0">
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">+ Lisää toive</button>
