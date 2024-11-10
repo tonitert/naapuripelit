@@ -70,6 +70,7 @@ function addGameRow(game) {
     const chatroomCell = document.createElement("td");
     const chatroomLink = document.createElement("a");
     chatroomLink.setAttribute("href", CHAT_LINK);
+    chatroomLink.setAttribute("target", "_blank")
     chatroomLink.appendChild(document.createTextNode("Keskustelu"));
     chatroomCell.appendChild(chatroomLink);
     newRow.appendChild(chatroomCell);
