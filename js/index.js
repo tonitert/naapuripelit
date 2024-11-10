@@ -65,6 +65,12 @@ function addGameRow(game) {
     const locationCell = document.createElement("td");
     locationCell.appendChild(document.createTextNode(game.location));
     newRow.appendChild(locationCell);
+    const chatroomCell = document.createElement("td");
+    const chatroomLink = document.createElement("a");
+    chatroomLink.setAttribute("href", "#");
+    chatroomLink.appendChild(document.createTextNode("Keskustelu"));
+    chatroomCell.appendChild(chatroomLink);
+    newRow.appendChild(chatroomCell);
     document.getElementById("gameList").appendChild(newRow);
 }
 
