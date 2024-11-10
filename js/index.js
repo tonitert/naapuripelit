@@ -1,14 +1,22 @@
-function GameTime(date, startTime, endTime, duration, game) {
-    this.date = date;
-    this.startTime = startTime;
-    this.endTime = endTime;
-    this.duration = duration;
-    this.game = game;
+import { getState, setState } from "./state.js";
+
+const state = getState();
+
+document.getElementById("ddUsername").innerText = state.username;
+
+class GameTime {
+    constructor(date, startTime, endTime, duration, game) {
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.duration = duration;
+        this.game = game;
+    }
 }
 
 const gameTimes = [];
 
-function addToList() {
+document.getElementById("addButton").onclick = () => {
     // Hakee syötetyt arvot ja lisää ne listaan
     const date = document.getElementById("dateInput").value;
     const startTime = document.getElementById("startTimeInput").value;
@@ -35,7 +43,7 @@ function addToList() {
     document.getElementById("timeList").appendChild(newRow);
 };
 
-function initSearch() {
+document.getElementById("searchButton").onclick = () => {
     if (gameTimes.length > 0) {
         const i = Math.floor(Math.random() * gameTimes.length);
         const randomDuration = gameTimes[i].duration + Math.floor(Math.random() * 61);
@@ -46,7 +54,7 @@ function initSearch() {
     };
 };
 
-async function invite() {
+document.getElementById("inviteButton").onclick = async () => {
     await new Promise(r => setTimeout(r, 10000));
     alert("Matti Meikäläinen hyväksyi kutsusi!");
 };
