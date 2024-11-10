@@ -41,4 +41,5 @@ profileForm.addEventListener("submit", (e) => {
             username: nameElement.value
         }
     )
+    location.reload();
 })
