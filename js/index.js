@@ -43,7 +43,7 @@ document.getElementById("addButton").onclick = () => {
     document.getElementById("timeList").appendChild(newRow);
 };
 
-document.getElementById("searchButton").onclick = () => {
+document.getElementById("gamesTab").onclick = () => {
     if (gameTimes.length > 0) {
         const i = Math.floor(Math.random() * gameTimes.length);
         const randomDuration = gameTimes[i].duration + Math.floor(Math.random() * 61);

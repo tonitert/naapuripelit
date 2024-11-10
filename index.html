@@ -24,21 +24,58 @@
             </div>
         </nav>
         <main class="container mt-3">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">+ Lisää toive</button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchModal" id="searchButton">Etsi peliaikoja</button>
-            <br><br>
-            <h5>Omat toiveet</h5>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Päivä</th>
-                        <th scope="col">Aika</th>
-                        <th scope="col">Minimikesto</th>
-                        <th scope="col">Mieluinen peli</th>
-                    </tr>
-                </thead>
-                <tbody id="timeList"></tbody>
-            </table>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="gamesTab" data-bs-toggle="tab" data-bs-target="#gamesTabPane" type="button" role="tab" aria-controls="gamesTabPane" aria-selected="true">Peliajat</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="requestsTab" data-bs-toggle="tab" data-bs-target="#requestsTabPane" type="button" role="tab" aria-controls="requestsTabPane" aria-selected="false">Toiveet</button>
+                </li>
+            </ul>
+            <div class="tab-content container mt-3">
+                <div class="tab-pane fade show active" id="gamesTabPane" role="tabpanel" aria-labelledby="gamesTab" tabindex="0">
+                    <p><b>Löytyi 1 peliaika!</b></p>
+                    <button type="button" class="btn btn-link" id="inviteButton">Ilmoittaudu</button>
+                    <table class="table">
+                        <tr>
+                            <th scope="row">Sijainti</th>
+                            <td>Otaniemen urheiluhalli</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Päivä</th>
+                            <td id="foundDate"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Aika</th>
+                            <td id="foundTime"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Minimikesto</th>
+                            <td id="foundDuration"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mieluinen peli</th>
+                            <td id="foundGame"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="requestsTabPane" role="tabpanel" aria-labelledby="requestsTab" tabindex="0">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">+ Lisää toive</button>
+                    <br><br>
+                    <h5>Omat toiveet</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Päivä</th>
+                                <th scope="col">Aika</th>
+                                <th scope="col">Minimikesto</th>
+                                <th scope="col">Mieluinen peli</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timeList"></tbody>
+                    </table>
+                </div>
+            </div>
         </main>
         <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -77,45 +114,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Peruuta</button>
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="addButton">Lisää</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="searchModalLabel">Etsi peliaikoja</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p><b>Löytyi 1 peliaika!</b></p>
-                        <button type="button" class="btn btn-link" id="inviteButton">Ilmoittaudu</button>
-                        <table class="table">
-                            <tr>
-                                <th scope="row">Sijainti</th>
-                                <td>Otaniemen urheiluhalli</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Päivä</th>
-                                <td id="foundDate"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Aika</th>
-                                <td id="foundTime"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Minimikesto</th>
-                                <td id="foundDuration"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Mieluinen peli</th>
-                                <td id="foundGame"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Sulje</button>
                     </div>
                 </div>
             </div>
