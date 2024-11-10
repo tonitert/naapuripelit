@@ -51,6 +51,8 @@ for (let gameReq of gameReqs) {
     addRequestRow(gameReq);
 }
 
+const CHAT_LINK = "https://t.me/+-6b3cWi1FEJjNjRk"
+
 function addGameRow(game) {
     const newRow = document.createElement("tr");
     const dateCell = document.createElement("td");
@@ -67,7 +69,7 @@ function addGameRow(game) {
     newRow.appendChild(locationCell);
     const chatroomCell = document.createElement("td");
     const chatroomLink = document.createElement("a");
-    chatroomLink.setAttribute("href", "#");
+    chatroomLink.setAttribute("href", CHAT_LINK);
     chatroomLink.appendChild(document.createTextNode("Keskustelu"));
     chatroomCell.appendChild(chatroomLink);
     newRow.appendChild(chatroomCell);
@@ -118,8 +120,16 @@ async function invite(game) {
     alert("Matti Meikäläinen hyväksyi kutsusi!");
 }
 
-document.getElementById("inviteButton").onclick = async () => {
+/**
+ * @type {HTMLButtonElement}
+ */
+const inviteButton = document.getElementById("inviteButton");
+
+inviteButton.onclick = async () => {
+    inviteButton.disabled = true;
+    inviteButton.innerText = "Odottaa hyväksyntää..";
     await invite(new Game(randomGameReq.date, randomGameReq.startTime, randomGameReq.endTime, randomGameReq.game, "Otahalli"));
+    inviteButton.innerText = "Liitytty peliin!";
 };
 
 document.getElementById("unreqInviteButton").onclick = async () => {
