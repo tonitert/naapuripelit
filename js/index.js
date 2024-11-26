@@ -113,11 +113,14 @@ initSearch();
 
 document.getElementById("gamesTab").onclick = initSearch;
 
-async function invite(game) {
+async function invite(button, game) {
+    button.disabled = true;
+    button.innerText = "Odottaa hyväksyntää..";
     await new Promise(r => setTimeout(r, 10000));
     games.push(game);
     setState({...getState(), games});
     addGameRow(game);
+    button.innerText = "Liitytty peliin!";
     alert("Matti Meikäläinen hyväksyi kutsusi!");
 }
 
@@ -125,14 +128,12 @@ async function invite(game) {
  * @type {HTMLButtonElement}
  */
 const inviteButton = document.getElementById("inviteButton");
+const unreqInviteButton = document.getElementById("unreqInviteButton");
 
 inviteButton.onclick = async () => {
-    inviteButton.disabled = true;
-    inviteButton.innerText = "Odottaa hyväksyntää..";
-    await invite(new Game(randomGameReq.date, randomGameReq.startTime, randomGameReq.endTime, randomGameReq.game, "Otahalli"));
-    inviteButton.innerText = "Liitytty peliin!";
+    await invite(inviteButton, new Game(randomGameReq.date, randomGameReq.startTime, randomGameReq.endTime, randomGameReq.game, "Otahalli"));
 };
 
-document.getElementById("unreqInviteButton").onclick = async () => {
-    await invite(new Game("2024-11-21", "16:00", "17:30", "Jalkapallo", "Otahalli"));
+unreqInviteButton.onclick = async () => {
+    await invite(unreqInviteButton, new Game("2024-11-21", "16:00", "17:30", "Jalkapallo", "Otahalli"));
 };
