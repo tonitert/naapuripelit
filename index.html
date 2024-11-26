@@ -67,6 +67,7 @@
                                         <h6 class="card-subtitle mb-2 text-body-secondary" id="foundDateTime"></h6>
                                         <p class="card-text">Ilmoittautuneita: 5/20</p>
                                         <button type="button" class="btn btn-primary" id="inviteButton">Ilmoittaudu</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#seePeopleModal">Tarkastele ilmoittautuneita</button>
                                     </div>
                                 </div>
                             </div>
@@ -128,6 +129,25 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Peruuta</button>
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="addButton">Lisää</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="seePeopleModal" tabindex="-1" aria-labelledby="seePeopleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="seePeopleModalLabel">Ilmoittautuneet</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>Matti Meikäläinen - Ikä: 25</li>
+                            <li>Jan-Erik Aspelund - Ikä: 22</li>
+                            <li>Sanna Söderström - Ikä: 19</li>
+                            <li>Pauliina Lintula - Ikä: 32</li>
+                            <li>Reijo Suorsa - Ikä: 22</li>
+                        </ul>
                     </div>
                 </div>
             </div>
