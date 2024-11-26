@@ -98,14 +98,14 @@ document.getElementById("addButton").onclick = () => {
 var randomGameReq = null;
 
 function initSearch() {
-    const requestedGameCard = document.getElementById("requestedGameCard");
+    const requestedGames = document.getElementById("requestedGames");
     if (gameReqs.length > 0) {
         randomGameReq = gameReqs[Math.floor(Math.random() * gameReqs.length)]
         document.getElementById("foundDateTime").innerText = randomGameReq.date + " klo " + randomGameReq.startTime + " - " + randomGameReq.endTime;
         document.getElementById("foundGame").innerText = randomGameReq.game;
-        document.getElementById("requestedGameCard").hidden = false;
+        requestedGames.hidden = false;
     } else {
-        requestedGameCard.hidden = true;
+        requestedGames.hidden = true;
     }
 }
 
@@ -128,12 +128,7 @@ async function invite(button, game) {
  * @type {HTMLButtonElement}
  */
 const inviteButton = document.getElementById("inviteButton");
-const unreqInviteButton = document.getElementById("unreqInviteButton");
 
 inviteButton.onclick = async () => {
     await invite(inviteButton, new Game(randomGameReq.date, randomGameReq.startTime, randomGameReq.endTime, randomGameReq.game, "Otahalli"));
-};
-
-unreqInviteButton.onclick = async () => {
-    await invite(unreqInviteButton, new Game("2024-11-21", "16:00", "17:30", "Jalkapallo", "Otahalli"));
 };

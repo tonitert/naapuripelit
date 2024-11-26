@@ -52,37 +52,22 @@
                         </thead>
                         <tbody id="gameList"></tbody>
                     </table>
-                    <h5>Ehdotukset</h5>
-                    <div class="card mb-3" id="requestedGameCard" hidden>
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Otahalli.JPG" class="img-fluid rounded-start" width="300" height="300" alt="Otahalli">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <span id="foundGame"></span> @ Otahalli
-                                    </h5>
-                                    <h6 class="card-subtitle mb-2 text-body-secondary" id="foundDateTime"></h6>
-                                    <p class="card-text">
-                                        Ilmoittautuneita: 5/20 <span class="badge text-bg-success">Sopii toiveeseesi</span>
-                                    </p>
-                                    <button type="button" class="btn btn-primary" id="inviteButton">Ilmoittaudu</button>
+                    <div id="requestedGames" hidden>
+                        <h5>Ehdotukset</h5>
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Otahalli.JPG" class="img-fluid rounded-start" width="300" height="300" alt="Otahalli">
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3" id="unrequestedGameCard">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Otahalli.JPG" class="img-fluid rounded-start" width="300" height="300" alt="Otahalli">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Jalkapallo @ Otahalli </h5>
-                                    <h6 class="card-subtitle mb-2 text-body-secondary">2024-11-21 klo 16:00 - 17:30</h6>
-                                    <p class="card-text">Ilmoittautuneita: 10/22</p>
-                                    <button type="button" class="btn btn-primary" id="unreqInviteButton">Ilmoittaudu</button>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <span id="foundGame"></span> @ Otahalli
+                                        </h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary" id="foundDateTime"></h6>
+                                        <p class="card-text">Ilmoittautuneita: 5/20</p>
+                                        <button type="button" class="btn btn-primary" id="inviteButton">Ilmoittaudu</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
