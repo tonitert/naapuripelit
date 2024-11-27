@@ -5,21 +5,21 @@ const state = getState();
 document.getElementById("ddUsername").innerText = state.username;
 
 class GameRequest {
-    constructor(date, startTime, endTime, duration, game) {
+    constructor(date, startTime, endTime, duration, gameSelections) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.duration = duration;
-        this.game = game;
+        this.gameSelections = gameSelections;
     }
 }
 
 class Game {
-    constructor(date, startTime, endTime, game, location) {
+    constructor(date, startTime, endTime, gameName, location) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.game = game;
+        this.gameName = gameName;
         this.location = location;
     }
 }
@@ -42,7 +42,7 @@ function addRequestRow(gameRequest) {
     durationCell.appendChild(document.createTextNode(durationHours + " tuntia " + durationMinutes + " minuuttia"));
     newRow.appendChild(durationCell);
     const gameCell = document.createElement("td");
-    gameCell.appendChild(document.createTextNode(gameRequest.game));
+    gameCell.appendChild(document.createTextNode(gameRequest.gameSelections.join(", ")));
     newRow.appendChild(gameCell);
     document.getElementById("timeList").appendChild(newRow);
 }
@@ -62,7 +62,7 @@ function addGameRow(game) {
     timeCell.appendChild(document.createTextNode(game.startTime + " - " + game.endTime));
     newRow.appendChild(timeCell);
     const gameCell = document.createElement("td");
-    gameCell.appendChild(document.createTextNode(game.game));
+    gameCell.appendChild(document.createTextNode(game.gameName));
     newRow.appendChild(gameCell);
     const locationCell = document.createElement("td");
     locationCell.appendChild(document.createTextNode(game.location));
@@ -81,28 +81,85 @@ for (let game of games) {
     addGameRow(game);
 }
 
+const gameBtns = [
+    {buttonId: "addBtnFootball", gameName: "Jalkapallo"},
+    {buttonId: "addBtnBasketball", gameName: "Koripallo"},
+    {buttonId: "addBtnVolleyball", gameName: "Lentopallo"},
+    {buttonId: "addBtnFloorball", gameName: "Sähly"},
+    {buttonId: "addBtnTennis", gameName: "Tennis"},
+    {buttonId: "addBtnBadminton", gameName: "Sulkapallo"},
+    {buttonId: "addBtnSports", gameName: "Muut urheilulajit"},
+    {buttonId: "addBtnChess", gameName: "Shakki"},
+    {buttonId: "addBtnMonopoly", gameName: "Monopoly"},
+    {buttonId: "addBtnBoardGames", gameName: "Muut lautapelit"},
+];
+
+let selectedGames = [];
+
+function updateSelectionUI() {
+    // Update chips
+    const chipContainer = document.getElementById("addedGames");
+    chipContainer.innerHTML = "";
+    for (let selection of selectedGames) {
+        const chip = document.createElement("span");
+        chip.setAttribute("class", "bg-light border rounded-pill px-3 d-inline-flex align-items-center me-2");
+        chip.appendChild(document.createTextNode(selection));
+        const removeBtn = document.createElement("button");
+        removeBtn.setAttribute("type", "button");
+        removeBtn.setAttribute("class", "btn-close ms-2");
+        removeBtn.setAttribute("aria-label", "Poista");
+        removeBtn.onclick = () => {
+            selectedGames = selectedGames.filter((gameName) => gameName !== selection);
+            updateSelectionUI();
+        };
+        chip.appendChild(removeBtn);
+        chipContainer.appendChild(chip);
+    }
+
+    // Disable or enable buttons
+    for (let gameBtn of gameBtns) {
+        document.getElementById(gameBtn.buttonId).disabled = selectedGames.includes(gameBtn.gameName);
+    }
+}
+
+for (let gameBtn of gameBtns) {
+    const addBtn = document.getElementById(gameBtn.buttonId);
+    addBtn.onclick = () => {
+        selectedGames.push(gameBtn.gameName);
+        updateSelectionUI();
+    };
+}
+
+document.getElementById("addBtnOther").onclick = () => {
+    const gameName = document.getElementById("gameInput").value;
+    selectedGames.push(gameName);
+    updateSelectionUI();
+};
+
 document.getElementById("addButton").onclick = () => {
     const date = document.getElementById("dateInput").value;
     const startTime = document.getElementById("startTimeInput").value;
     const endTime = document.getElementById("endTimeInput").value;
     const durationHours = document.getElementById("durationHoursInput").value;
     const durationMinutes = document.getElementById("durationMinsInput").value;
-    const game = document.getElementById("gameInput").value;
 
-    const gameRequest = new GameRequest(date, startTime, endTime, (parseInt(durationHours) * 60) + parseInt(durationMinutes), game);
+    const gameRequest = new GameRequest(date, startTime, endTime, (parseInt(durationHours) * 60) + parseInt(durationMinutes), selectedGames.slice());
     gameReqs.push(gameRequest);
     setState({...getState(), gameReqs});
     addRequestRow(gameRequest);
 };
 
 var randomGameReq = null;
+var randomGameSelection = null;
 
 function initSearch() {
     const requestedGames = document.getElementById("requestedGames");
     if (gameReqs.length > 0) {
-        randomGameReq = gameReqs[Math.floor(Math.random() * gameReqs.length)]
+        randomGameReq = gameReqs[Math.floor(Math.random() * gameReqs.length)];
+        const numberOfSelections = randomGameReq.gameSelections.length;
+        randomGameSelection = randomGameReq.gameSelections[Math.floor(Math.random() * numberOfSelections)];
         document.getElementById("foundDateTime").innerText = randomGameReq.date + " klo " + randomGameReq.startTime + " - " + randomGameReq.endTime;
-        document.getElementById("foundGame").innerText = randomGameReq.game;
+        document.getElementById("foundGame").innerText = randomGameSelection;
         requestedGames.hidden = false;
     } else {
         requestedGames.hidden = true;
@@ -130,5 +187,5 @@ async function invite(button, game) {
 const inviteButton = document.getElementById("inviteButton");
 
 inviteButton.onclick = async () => {
-    await invite(inviteButton, new Game(randomGameReq.date, randomGameReq.startTime, randomGameReq.endTime, randomGameReq.game, "Otahalli"));
+    await invite(inviteButton, new Game(randomGameReq.date, randomGameReq.startTime, randomGameReq.endTime, randomGameSelection, "Otahalli"));
 };
