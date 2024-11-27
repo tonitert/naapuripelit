@@ -133,10 +133,66 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="gameSelectTabPane" role="tabpanel" aria-labelledby="gameSelectTab" tabindex="0">
-                                <div class="mb-3">
-                                    <label for="gameInput" class="form-label">Mieluinen peli</label>
-                                    <input type="input" class="form-control" id="gameInput">
+                                <div class="accordion" id="gameSelectAccordion">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sportsCollapse" aria-expanded="true" aria-controls="sportsCollapse">
+                                                Urheilulajit
+                                            </button>
+                                        </h2>
+                                        <div class="accordion-collapse collapse show" id="sportsCollapse" data-bs-parent="#gameSelectAccordion">
+                                            <div class="accordion-body">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        laji 1
+                                                        <button type="button" class="btn btn-success btn-sm">+ Lisää</button>
+                                                    </li>
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        laji 2
+                                                        <button type="button" class="btn btn-success btn-sm">+ Lisää</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#boardGamesCollapse" aria-expanded="false" aria-controls="boardGamesCollapse">
+                                                Lautapelit
+                                            </button>
+                                        </h2>
+                                        <div class="accordion-collapse collapse" id="boardGamesCollapse" data-bs-parent="#gameSelectAccordion">
+                                            <div class="accordion-body">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        peli 1
+                                                        <button type="button" class="btn btn-success btn-sm">+ Lisää</button>
+                                                    </li>
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        peli 2
+                                                        <button type="button" class="btn btn-success btn-sm">+ Lisää</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#otherCollapse" aria-expanded="false" aria-controls="otherCollapse">
+                                                Muu
+                                            </button>
+                                        </h2>
+                                        <div class="accordion-collapse collapse" id="otherCollapse" data-bs-parent="#gameSelectAccordion">
+                                            <div class="accordion-body">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="gameInput" placeholder="Kirjoita pelin nimi">
+                                                    <button type="button" class="btn btn-success" id="addBtnOther">+ Lisää</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div id="addedGames"></div>
                             </div>
                         </div>
                     </div>
