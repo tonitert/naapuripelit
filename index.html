@@ -133,7 +133,7 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="gameSelectTabPane" role="tabpanel" aria-labelledby="gameSelectTab" tabindex="0">
-                                <div class="accordion" id="gameSelectAccordion">
+                                <div class="accordion overflow-y-auto" id="gameSelectAccordion" style="max-height: calc(100vh - 20rem);">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sportsCollapse" aria-expanded="true" aria-controls="sportsCollapse">
@@ -144,12 +144,32 @@
                                             <div class="accordion-body">
                                                 <ul class="list-group list-group-flush">
                                                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                        laji 1
-                                                        <button type="button" class="btn btn-success btn-sm">+ Lisää</button>
+                                                        Jalkapallo
+                                                        <button type="button" class="btn btn-success btn-sm" id="addBtnFootball">+ Lisää</button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                        laji 2
-                                                        <button type="button" class="btn btn-success btn-sm">+ Lisää</button>
+                                                        Koripallo
+                                                        <button type="button" class="btn btn-success btn-sm" id="addBtnBasketball">+ Lisää</button>
+                                                    </li>
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        Lentopallo
+                                                        <button type="button" class="btn btn-success btn-sm" id="addBtnVolleyball">+ Lisää</button>
+                                                    </li>
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        Sähly
+                                                        <button type="button" class="btn btn-success btn-sm" id="addBtnFloorball">+ Lisää</button>
+                                                    </li>
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        Tennis
+                                                        <button type="button" class="btn btn-success btn-sm" id="addBtnTennis">+ Lisää</button>
+                                                    </li>
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        Sulkapallo
+                                                        <button type="button" class="btn btn-success btn-sm" id="addBtnBadminton">+ Lisää</button>
+                                                    </li>
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        Muut urheilulajit
+                                                        <button type="button" class="btn btn-success btn-sm" id="addBtnSports">+ Lisää</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -165,12 +185,16 @@
                                             <div class="accordion-body">
                                                 <ul class="list-group list-group-flush">
                                                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                        peli 1
-                                                        <button type="button" class="btn btn-success btn-sm">+ Lisää</button>
+                                                        Shakki
+                                                        <button type="button" class="btn btn-success btn-sm" id="addBtnChess">+ Lisää</button>
                                                     </li>
                                                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                        peli 2
-                                                        <button type="button" class="btn btn-success btn-sm">+ Lisää</button>
+                                                        Monopoly
+                                                        <button type="button" class="btn btn-success btn-sm" id="addBtnMonopoly">+ Lisää</button>
+                                                    </li>
+                                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                        Muu lautapeli
+                                                        <button type="button" class="btn btn-success btn-sm" id="addBtnBoardGames">+ Lisää</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -192,7 +216,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="addedGames"></div>
+                                <div class="container mt-3" id="addedGames">
+                                    <span class="bg-light border rounded-pill px-3 d-inline-flex align-items-center me-2">
+                                        Laji
+                                        <button type="button" class="btn-close ms-2" aria-label="Poista"></button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
