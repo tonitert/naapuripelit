@@ -100,30 +100,44 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Sulje"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="dateInput" class="form-label">Päivä</label>
-                            <input type="date" class="form-control" id="dateInput">
-                        </div>
-                        <div class="mb-3">
-                            <label for="startTimeInput" class="form-label">Aika</label>
-                            <div class="input-group">
-                                <input type="time" class="form-control" id="startTimeInput">
-                                <span class="input-group-text">-</span>
-                                <input type="time" class="form-control" id="endTimeInput">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="timeTab" data-bs-toggle="tab" data-bs-target="#timeTabPane" type="button" role="tab" aria-controls="timeTabPane" aria-selected="true">Aika</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="gameSelectTab" data-bs-toggle="tab" data-bs-target="#gameSelectTabPane" type="button" role="tab" aria-controls="gameSelectTabPane" aria-selected="false">Mieluiset pelit</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content container mt-3">
+                            <div class="tab-pane fade show active" id="timeTabPane" role="tabpanel" aria-labelledby="timeTab" tabindex="0">
+                                <div class="mb-3">
+                                    <label for="dateInput" class="form-label">Päivä</label>
+                                    <input type="date" class="form-control" id="dateInput">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="startTimeInput" class="form-label">Aika</label>
+                                    <div class="input-group">
+                                        <input type="time" class="form-control" id="startTimeInput">
+                                        <span class="input-group-text">-</span>
+                                        <input type="time" class="form-control" id="endTimeInput">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="durationHoursInput" class="form-label">Minimikesto</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="durationHoursInput" min="0" value="0">
+                                        <span class="input-group-text">tuntia</span>
+                                        <input type="number" class="form-control" id="durationMinsInput" min="0" max="59" value="0">
+                                        <span class="input-group-text">minuuttia</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="durationHoursInput" class="form-label">Minimikesto</label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" id="durationHoursInput" min="0" value="0">
-                                <span class="input-group-text">tuntia</span>
-                                <input type="number" class="form-control" id="durationMinsInput" min="0" max="59" value="0">
-                                <span class="input-group-text">minuuttia</span>
+                            <div class="tab-pane fade" id="gameSelectTabPane" role="tabpanel" aria-labelledby="gameSelectTab" tabindex="0">
+                                <div class="mb-3">
+                                    <label for="gameInput" class="form-label">Mieluinen peli</label>
+                                    <input type="input" class="form-control" id="gameInput">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="gameInput" class="form-label">Mieluinen peli</label>
-                            <input type="input" class="form-control" id="gameInput">
                         </div>
                     </div>
                     <div class="modal-footer">
