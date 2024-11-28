@@ -5,27 +5,31 @@ const state = getState();
 document.getElementById("ddUsername").innerText = state.username;
 
 class GameRequest {
-    constructor(date, startTime, endTime, duration, gameSelections) {
+    constructor(date, startTime, endTime, duration, gameSelections, level) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.duration = duration;
         this.gameSelections = gameSelections;
+        this.level = level;
     }
 }
 
 class Game {
-    constructor(date, startTime, endTime, gameName, location) {
+    constructor(date, startTime, endTime, gameName, location, level) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.gameName = gameName;
         this.location = location;
+        this.level = level;
     }
 }
 
 const gameReqs = state.gameReqs;
 const games = state.games;
+
+const levelNames = ["", "Aloittelija", "Keskitaso", "Kilpailullinen"];
 
 function addRequestRow(gameRequest) {
     const durationHours = Math.floor(gameRequest.duration / 60);
@@ -44,6 +48,9 @@ function addRequestRow(gameRequest) {
     const gameCell = document.createElement("td");
     gameCell.appendChild(document.createTextNode(gameRequest.gameSelections.join(", ")));
     newRow.appendChild(gameCell);
+    const levelCell = document.createElement("td");
+    levelCell.appendChild(document.createTextNode(levelNames[gameRequest.level]));
+    newRow.appendChild(levelCell);
     document.getElementById("timeList").appendChild(newRow);
 }
 
@@ -64,6 +71,9 @@ function addGameRow(game) {
     const gameCell = document.createElement("td");
     gameCell.appendChild(document.createTextNode(game.gameName));
     newRow.appendChild(gameCell);
+    const levelCell = document.createElement("td");
+    levelCell.appendChild(document.createTextNode(levelNames[game.level]));
+    newRow.appendChild(levelCell);
     const locationCell = document.createElement("td");
     locationCell.appendChild(document.createTextNode(game.location));
     newRow.appendChild(locationCell);
@@ -142,8 +152,11 @@ document.getElementById("addButton").onclick = () => {
     const endTime = document.getElementById("endTimeInput").value;
     const durationHours = document.getElementById("durationHoursInput").value;
     const durationMinutes = document.getElementById("durationMinsInput").value;
+    const duration = (parseInt(durationHours) * 60) + parseInt(durationMinutes);
+    const gameSelections = selectedGames.slice();
+    const level = parseInt(document.getElementById("levelSelector").value);
 
-    const gameRequest = new GameRequest(date, startTime, endTime, (parseInt(durationHours) * 60) + parseInt(durationMinutes), selectedGames.slice());
+    const gameRequest = new GameRequest(date, startTime, endTime, duration, gameSelections, level);
     gameReqs.push(gameRequest);
     setState({...getState(), gameReqs});
     addRequestRow(gameRequest);
@@ -160,6 +173,7 @@ function initSearch() {
         randomGameSelection = randomGameReq.gameSelections[Math.floor(Math.random() * numberOfSelections)];
         document.getElementById("foundDateTime").innerText = randomGameReq.date + " klo " + randomGameReq.startTime + " - " + randomGameReq.endTime;
         document.getElementById("foundGame").innerText = randomGameSelection;
+        document.getElementById("foundLevel").innerText = levelNames[randomGameReq.level];
         requestedGames.hidden = false;
     } else {
         requestedGames.hidden = true;
@@ -187,5 +201,5 @@ async function invite(button, game) {
 const inviteButton = document.getElementById("inviteButton");
 
 inviteButton.onclick = async () => {
-    await invite(inviteButton, new Game(randomGameReq.date, randomGameReq.startTime, randomGameReq.endTime, randomGameSelection, "Otahalli"));
+    await invite(inviteButton, new Game(randomGameReq.date, randomGameReq.startTime, randomGameReq.endTime, randomGameSelection, "Otahalli", randomGameReq.level));
 };
