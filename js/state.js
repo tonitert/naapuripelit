@@ -2,13 +2,35 @@
  * Module for handling state across the application. Can be included in other pages than profile too, see sample usage in profile.html!
  */
 
+export class GameRequest {
+    constructor(date, startTime, endTime, duration, gameSelections, level) {
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.duration = duration;
+        this.gameSelections = gameSelections;
+        this.level = level;
+    }
+}
+
+export class Game {
+    constructor(date, startTime, endTime, gameName, location, level) {
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.gameName = gameName;
+        this.location = location;
+        this.level = level;
+    }
+}
+
 class State {
 
     /**
      * 
      * @param {string} username 
-     * @param {Game} games 
-     * @param {GameRequest} gameReqs
+     * @param {Game[]} games 
+     * @param {GameRequest[]} gameReqs
      */
     constructor(username, games, gameReqs) {
         this.username = username;

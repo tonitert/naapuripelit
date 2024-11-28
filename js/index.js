@@ -1,30 +1,8 @@
-import { getState, setState } from "./state.js";
+import { getState, setState, GameRequest, Game } from "./state.js";
 
 const state = getState();
 
 document.getElementById("ddUsername").innerText = state.username;
-
-class GameRequest {
-    constructor(date, startTime, endTime, duration, gameSelections, level) {
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.duration = duration;
-        this.gameSelections = gameSelections;
-        this.level = level;
-    }
-}
-
-class Game {
-    constructor(date, startTime, endTime, gameName, location, level) {
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.gameName = gameName;
-        this.location = location;
-        this.level = level;
-    }
-}
 
 const gameReqs = state.gameReqs;
 const games = state.games;
@@ -54,7 +32,7 @@ function addRequestRow(gameRequest) {
     document.getElementById("timeList").appendChild(newRow);
 }
 
-for (let gameReq of gameReqs) {
+for (const gameReq of gameReqs) {
     addRequestRow(gameReq);
 }
 
@@ -87,7 +65,7 @@ function addGameRow(game) {
     document.getElementById("gameList").appendChild(newRow);
 }
 
-for (let game of games) {
+for (const game of games) {
     addGameRow(game);
 }
 
