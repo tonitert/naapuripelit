@@ -125,6 +125,12 @@ document.getElementById("addBtnOther").onclick = () => {
 };
 
 document.getElementById("addButton").onclick = () => {
+
+    if (selectedGames.length === 0) {
+        alert("Sinun on valittava mieluisia pelejä!");
+        return;
+    }
+
     const date = document.getElementById("dateInput").value;
     const startTime = document.getElementById("startTimeInput").value;
     const endTime = document.getElementById("endTimeInput").value;
