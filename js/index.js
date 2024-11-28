@@ -203,3 +203,37 @@ const inviteButton = document.getElementById("inviteButton");
 inviteButton.onclick = async () => {
     await invite(inviteButton, new Game(randomGameReq.date, randomGameReq.startTime, randomGameReq.endTime, randomGameSelection, "Otahalli", randomGameReq.level));
 };
+
+{
+    /**
+     * 
+     * @param {HTMLElement} element 
+     * @param {number} columnIndex 
+     */
+    function filterTable(element, columnIndex) {
+        const filter = element.value.toLowerCase();
+        const table = document.querySelector('.signups-table');
+        const rows = table.querySelectorAll('tbody tr');
+    
+        rows.forEach(row => {
+            const cell = row.cells[columnIndex];
+            if (cell && cell.textContent.toLowerCase().includes(filter)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+    const elements = document.getElementsByClassName("filter-input");
+
+    for (let index = 0; index < elements.length; index++) {
+        /**
+         * @type {HTMLElement}
+         */
+        const element = elements[index];
+        element.addEventListener("keyup", () => filterTable(element, index))
+    }
+}
+
+
+

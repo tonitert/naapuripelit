@@ -43,15 +43,32 @@
             <div class="tab-content container mt-3">
                 <div class="tab-pane fade show active" id="gamesTabPane" role="tabpanel" aria-labelledby="gamesTab" tabindex="0">
                     <h5>Ilmoittautumiset</h5>
-                    <table class="table">
+                    <table class="table signups-table">
                         <thead>
                             <tr>
-                                <th scope="col">Päivä</th>
-                                <th scope="col">Aika</th>
-                                <th scope="col">Peli</th>
-                                <th scope="col">Taitotaso</th>
-                                <th scope="col">Paikka</th>
-                                <th scope="col">Keskusteluryhmä</th>
+                                <th>
+                                    Päivä<br>
+                                    <input type="text" class="filter-input form-control form-control-sm" placeholder="Suodata päivän perusteella">
+                                </th>
+                                <th>
+                                    Aika<br>
+                                    <input type="text" class="filter-input form-control form-control-sm" placeholder="Suodata ajan perusteella">
+                                </th>
+                                <th>
+                                    Peli<br>
+                                    <input type="text" class="filter-input form-control form-control-sm" placeholder="Suodata pelin perusteella">
+                                </th>
+                                <th>
+                                    Taitotaso<br>
+                                    <input type="text" class="filter-input form-control form-control-sm" placeholder="Suodata taitotason perusteella">
+                                </th>
+                                <th>
+                                    Paikka<br>
+                                    <input type="text" class="filter-input form-control form-control-sm" placeholder="Suodata paikan perusteella">
+                                </th>
+                                <th>
+                                    Keskusteluryhmä<br>
+                                </th>
                             </tr>
                         </thead>
                         <tbody id="gameList"></tbody>
